@@ -23,11 +23,11 @@ func Len(x ast.Expr) *ast.CallExpr {
 }
 
 func Cap(x ast.Expr) *ast.CallExpr {
-	return CallName("len", x)
+	return CallName("cap", x)
 }
 
 func New(x ast.Expr) *ast.CallExpr {
-	return CallName("len", x)
+	return CallName("new", x)
 }
 
 func Copy(dst, src ast.Expr) *ast.CallExpr {
