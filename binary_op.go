@@ -96,3 +96,10 @@ func ShiftLeft(x ast.Expr, y ast.Expr) *ast.BinaryExpr {
 func ShiftRight(x ast.Expr, y ast.Expr) *ast.BinaryExpr {
 	return BinaryOp(x, token.SHR, y)
 }
+
+// Channel
+
+// Send returns x <- y expression.
+func Send(x ast.Expr, y ast.Expr) *ast.BinaryExpr {
+	return BinaryOp(x, token.ARROW, y)
+}

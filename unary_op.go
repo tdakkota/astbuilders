@@ -25,3 +25,17 @@ func Not(e ast.Expr) *ast.UnaryExpr {
 		X:  e,
 	}
 }
+
+func BNot(e ast.Expr) *ast.UnaryExpr {
+	return &ast.UnaryExpr{
+		Op: token.XOR,
+		X:  e,
+	}
+}
+
+func Recv(e ast.Expr) *ast.UnaryExpr {
+	return &ast.UnaryExpr{
+		Op: token.ARROW,
+		X:  e,
+	}
+}
