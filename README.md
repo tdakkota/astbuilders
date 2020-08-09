@@ -1,16 +1,13 @@
-# gotemplate
+# astbuilders
 
-[![Go](https://github.com/tdakkota/gotemplate/workflows/Go/badge.svg)](https://github.com/tdakkota/gotemplate/actions)
-[![Documentation](https://godoc.org/github.com/tdakkota/gotemplate?status.svg)](https://pkg.go.dev/github.com/tdakkota/gotemplate?tab=subdirectories)
-[![codecov](https://codecov.io/gh/tdakkota/gotemplate/branch/master/graph/badge.svg)](https://codecov.io/gh/tdakkota/gotemplate)
-[![license](https://img.shields.io/github/license/tdakkota/gotemplate.svg?maxAge=2592000)](https://github.com/tdakkota/gotemplate/blob/master/LICENSE)
+[![Go](https://github.com/tdakkota/astbuilders/workflows/Go/badge.svg)](https://github.com/tdakkota/astbuilders/actions)
+[![Documentation](https://godoc.org/github.com/tdakkota/astbuilders?status.svg)](https://pkg.go.dev/github.com/tdakkota/astbuilders?tab=subdirectories)
+[![codecov](https://codecov.io/gh/tdakkota/astbuilders/branch/master/graph/badge.svg)](https://codecov.io/gh/tdakkota/astbuilders)
+[![license](https://img.shields.io/github/license/tdakkota/astbuilders.svg?maxAge=2592000)](https://github.com/tdakkota/astbuilders/blob/master/LICENSE)
 
-REPLACE ME!
+Go AST utility package 
 
 ## Install
 ```
-go get github.com/tdakkota/gotemplate
+go get github.com/tdakkota/astbuilders
 ```
-
-## Example 
-REPLACE ME!
