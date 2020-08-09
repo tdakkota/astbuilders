@@ -1,10 +1,11 @@
 package builders
 
 import (
-	"github.com/stretchr/testify/require"
 	"go/ast"
 	"go/token"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestBinaryOps(t *testing.T) {
@@ -32,6 +33,8 @@ func TestBinaryOps(t *testing.T) {
 		token.NEQ: NotEq,       // !=
 		token.LEQ: LessOrEq,    // <=
 		token.GEQ: GreaterOrEq, // >=
+
+		token.ARROW: Send, // <-
 	}
 
 	r := require.New(t)
