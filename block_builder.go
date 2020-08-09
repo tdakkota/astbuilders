@@ -68,15 +68,6 @@ func (builder StatementBuilder) IfElse(init ast.Stmt, cond ast.Expr, ifBody, els
 	})
 }
 
-func (builder StatementBuilder) IfElseStmt(init ast.Stmt, cond ast.Expr, ifBody BodyFunc, elseStmt ast.Stmt) StatementBuilder {
-	return builder.AddStmts(&ast.IfStmt{
-		Init: init,
-		Cond: cond,
-		Body: ifBody(NewStatementBuilder()).CompleteAsBlock(),
-		Else: elseStmt,
-	})
-}
-
 func (builder StatementBuilder) Block(loopBody BodyFunc) StatementBuilder {
 	return builder.AddStmts(&ast.BlockStmt{
 		List: loopBody(NewStatementBuilder()).Complete(),
