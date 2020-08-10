@@ -1,10 +1,11 @@
 package builders
 
 import (
-	"github.com/stretchr/testify/require"
 	"go/ast"
 	"go/token"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestIncStmt(t *testing.T) {
