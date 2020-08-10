@@ -21,6 +21,16 @@ func Assign(lhs1 ast.Expr, lhs ...ast.Expr) AssignFunc {
 	}
 }
 
+// DefineFunc represents curried function which creates a define statement.
+type DefineFunc = func(ast.Expr, ...ast.Expr) *ast.AssignStmt
+
+// Define returns DefineFunc to build a define statement.
+func Define(lhs1 ast.Expr, lhs ...ast.Expr) DefineFunc {
+	return func(rhs1 ast.Expr, rhs ...ast.Expr) *ast.AssignStmt {
+		return Assign(lhs1, lhs...)(token.DEFINE)(rhs1, rhs...)
+	}
+}
+
 // Swap returns a, b = b, a statement.
 func Swap(a, b ast.Expr) *ast.AssignStmt {
 	return Assign(a, b)(token.ASSIGN)(b, a)

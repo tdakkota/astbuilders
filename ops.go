@@ -17,3 +17,11 @@ func RefFor(ident ast.Expr) *ast.StarExpr {
 		X: ident,
 	}
 }
+
+// TypeAssert returns what.(to) expression.
+func TypeAssert(what, to ast.Expr) *ast.TypeAssertExpr {
+	return &ast.TypeAssertExpr{
+		X:    what,
+		Type: to,
+	}
+}
