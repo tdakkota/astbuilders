@@ -29,7 +29,7 @@ func IntegerLit(value int) *ast.BasicLit {
 
 func FloatLit(value float64) *ast.BasicLit {
 	return &ast.BasicLit{
-		Kind:  token.INT,
+		Kind:  token.FLOAT,
 		Value: strconv.FormatFloat(value, 'f', -1, 64),
 	}
 }
