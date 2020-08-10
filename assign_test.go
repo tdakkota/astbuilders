@@ -14,3 +14,11 @@ func ExampleSwap() {
 	printer.Fprint(os.Stdout, token.NewFileSet(), swap) // print ast.Node
 	// Output: x, y = y, x
 }
+
+func ExampleDefine() {
+	x := ast.NewIdent("x")
+	swap := Define(x)(IntegerLit(0))
+
+	printer.Fprint(os.Stdout, token.NewFileSet(), swap) // print ast.Node
+	// Output: x := 0
+}

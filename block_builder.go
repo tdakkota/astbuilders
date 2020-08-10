@@ -32,22 +32,25 @@ func (builder StatementBuilder) Decl(decl ast.Decl) StatementBuilder {
 	})
 }
 
-func (builder StatementBuilder) Var(specs ...ast.Spec) StatementBuilder {
-	return builder.AddStmts(&ast.DeclStmt{
-		Decl: &ast.GenDecl{
-			Tok:   token.VAR,
-			Specs: specs,
-		},
+func (builder StatementBuilder) GenDecl(tok token.Token, specs ...ast.Spec) StatementBuilder {
+	return builder.Decl(&ast.GenDecl{
+		Tok:   tok,
+		Specs: specs,
 	})
 }
 
+func (builder StatementBuilder) Var(specs ...ast.Spec) StatementBuilder {
+	return builder.GenDecl(
+		token.VAR,
+		specs...,
+	)
+}
+
 func (builder StatementBuilder) Const(specs ...ast.Spec) StatementBuilder {
-	return builder.AddStmts(&ast.DeclStmt{
-		Decl: &ast.GenDecl{
-			Tok:   token.CONST,
-			Specs: specs,
-		},
-	})
+	return builder.GenDecl(
+		token.CONST,
+		specs...,
+	)
 }
 
 func (builder StatementBuilder) If(init ast.Stmt, cond ast.Expr, ifBody BodyFunc) StatementBuilder {
@@ -110,10 +113,7 @@ func (builder StatementBuilder) TypeSwitch(init, assign ast.Stmt, switchBody Bod
 }
 
 func (builder StatementBuilder) CaseExpr(expr ast.Expr, caseBody BodyFunc) StatementBuilder {
-	return builder.AddStmts(&ast.CaseClause{
-		List: []ast.Expr{expr},
-		Body: caseBody(NewStatementBuilder()).Complete(),
-	})
+	return builder.Case([]ast.Expr{expr}, caseBody)
 }
 
 func (builder StatementBuilder) Case(list []ast.Expr, caseBody BodyFunc) StatementBuilder {
@@ -137,9 +137,7 @@ func (builder StatementBuilder) SelectCase(comm ast.Stmt, caseBody BodyFunc) Sta
 }
 
 func (builder StatementBuilder) Branch(token token.Token) StatementBuilder {
-	return builder.AddStmts(&ast.BranchStmt{
-		Tok: token,
-	})
+	return builder.BranchLabel(token, nil)
 }
 
 func (builder StatementBuilder) BranchLabel(token token.Token, label *ast.Ident) StatementBuilder {
