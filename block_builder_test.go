@@ -1,9 +1,10 @@
 package builders
 
 import (
-	"github.com/stretchr/testify/require"
 	"go/ast"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestComplete(t *testing.T) {
