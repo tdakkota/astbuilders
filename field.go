@@ -16,11 +16,7 @@ func Field(names ...*ast.Ident) func(typ ast.Expr, tag *ast.BasicLit) *ast.Field
 // Param builds function parameter.
 func Param(names ...*ast.Ident) func(typ ast.Expr) *ast.Field {
 	return func(typ ast.Expr) *ast.Field {
-		return &ast.Field{
-			Names: names,
-			Type:  typ,
-			Tag:   nil,
-		}
+		return Field(names...)(typ, nil)
 	}
 }
 
