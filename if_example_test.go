@@ -1,7 +1,6 @@
 package builders_test
 
 import (
-	"go/ast"
 	"go/printer"
 	"go/token"
 	"os"
@@ -10,13 +9,12 @@ import (
 )
 
 func Example_ifErrNotNil() {
-	errIdent := ast.NewIdent("err")
-	nilIdent := ast.NewIdent("nil")
-	cond := builders.NotEq(errIdent, nilIdent)
+	// err != nil
+	cond := builders.NotEq(builders.Err(), builders.Nil())
 
 	s := builders.NewStatementBuilder()
 	s = s.If(nil, cond, func(body builders.StatementBuilder) builders.StatementBuilder {
-		return body.Return(errIdent)
+		return body.Return(builders.Err())
 	})
 
 	stmts := s.Complete()

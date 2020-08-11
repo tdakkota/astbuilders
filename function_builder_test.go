@@ -10,7 +10,7 @@ import (
 func TestFunctionBuilder(t *testing.T) {
 	a := require.New(t)
 
-	recv := Field(ast.NewIdent("r"))(ast.NewIdent("receiver"), nil)
+	recv := Receiver(ast.NewIdent("r"))(ast.NewIdent("receiver"))
 	param := Param(ast.NewIdent("p"))(ast.NewIdent("param"))
 	result := Param(ast.NewIdent("res"))(ast.NewIdent("result"))
 

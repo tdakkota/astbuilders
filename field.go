@@ -23,3 +23,8 @@ func Param(names ...*ast.Ident) func(typ ast.Expr) *ast.Field {
 		}
 	}
 }
+
+// Receiver builds function receiver.
+func Receiver(name *ast.Ident) func(typ ast.Expr) *ast.Field {
+	return Param(name)
+}

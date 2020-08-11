@@ -20,8 +20,8 @@ func TestArrayOf(t *testing.T) {
 }
 
 func ExampleArrayOfSize() {
-	int := IdentOfKind(types.Int)
-	array := ArrayOfSize(int, 2)
+	integer := IdentOfKind(types.Int)
+	array := ArrayOfSize(integer, 2)
 	printer.Fprint(os.Stdout, token.NewFileSet(), array) // print ast.Node
 	// Output: [2]int
 }
