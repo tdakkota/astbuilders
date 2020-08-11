@@ -7,6 +7,7 @@ import (
 
 type BodyFunc func(s StatementBuilder) StatementBuilder
 
+// StatementBuilder is block statement builder.
 type StatementBuilder struct {
 	stmts []ast.Stmt
 }

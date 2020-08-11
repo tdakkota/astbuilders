@@ -4,12 +4,14 @@ import (
 	"go/ast"
 )
 
+// Paren returns parenthesised expression.
 func Paren(e ast.Expr) *ast.ParenExpr {
 	return &ast.ParenExpr{
 		X: e,
 	}
 }
 
+// Selector creates selector path from given identifiers.
 func Selector(a ast.Expr, b *ast.Ident, expr ...*ast.Ident) *ast.SelectorExpr {
 	if len(expr) == 0 {
 		return &ast.SelectorExpr{
@@ -24,11 +26,8 @@ func Selector(a ast.Expr, b *ast.Ident, expr ...*ast.Ident) *ast.SelectorExpr {
 	}
 }
 
+// SelectorName creates selector path from given identifiers.
 func SelectorName(a, b string, expr ...string) *ast.SelectorExpr {
-	exprIdent := make([]*ast.Ident, len(expr))
-	for i := range expr {
-		exprIdent[i] = ast.NewIdent(expr[i])
-	}
-
-	return Selector(ast.NewIdent(a), ast.NewIdent(b), exprIdent...)
+	idents := Idents(append([]string{a, b}, expr...)...)
+	return Selector(idents[0], idents[1], idents[2:]...)
 }

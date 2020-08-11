@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// StringLit creates string literal.
 func StringLit(value string) *ast.BasicLit {
 	return &ast.BasicLit{
 		Kind:  token.STRING,
@@ -13,6 +14,7 @@ func StringLit(value string) *ast.BasicLit {
 	}
 }
 
+// CharLit creates rune/character literal.
 func CharLit(value rune) *ast.BasicLit {
 	return &ast.BasicLit{
 		Kind:  token.CHAR,
@@ -20,6 +22,7 @@ func CharLit(value rune) *ast.BasicLit {
 	}
 }
 
+// IntegerLit creates integer literal.
 func IntegerLit(value int) *ast.BasicLit {
 	return &ast.BasicLit{
 		Kind:  token.INT,
@@ -27,6 +30,7 @@ func IntegerLit(value int) *ast.BasicLit {
 	}
 }
 
+// FloatLit creates floating point literal.
 func FloatLit(value float64) *ast.BasicLit {
 	return &ast.BasicLit{
 		Kind:  token.FLOAT,
