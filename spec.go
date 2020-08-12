@@ -24,3 +24,21 @@ func ValueSpec(name *ast.Ident, names ...*ast.Ident) func(typ ast.Expr) func(...
 		}
 	}
 }
+
+// ImportSpec creates *ast.ImportSpec.
+func ImportSpec(name *ast.Ident, path *ast.BasicLit) *ast.ImportSpec {
+	return &ast.ImportSpec{
+		Name: name,
+		Path: path,
+	}
+}
+
+// Import create unnamed import spec using path.
+func Import(path string) *ast.ImportSpec {
+	return ImportSpec(nil, StringLit(path))
+}
+
+// Import create unnamed import spec using path.
+func NamedImport(name, path string) *ast.ImportSpec {
+	return ImportSpec(ast.NewIdent(name), StringLit(path))
+}
