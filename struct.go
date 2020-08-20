@@ -8,6 +8,11 @@ type StructBuilder struct {
 	fields []*ast.Field
 }
 
+// EmptyStruct creates new empty struct{} declaration.
+func EmptyStruct() *ast.StructType {
+	return NewStructBuilder().Complete()
+}
+
 // NewStructBuilder creates new StructBuilder.
 func NewStructBuilder() StructBuilder {
 	return StructBuilder{}
