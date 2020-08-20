@@ -1,11 +1,12 @@
 package builders
 
 import (
-	"github.com/stretchr/testify/require"
 	"go/ast"
 	"go/token"
 	"go/types"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestFileBuilder_DeclareType(t *testing.T) {

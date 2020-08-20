@@ -3,8 +3,9 @@ package builders
 import (
 	"go/ast"
 	"go/token"
-	"golang.org/x/tools/go/ast/astutil"
 	"strconv"
+
+	"golang.org/x/tools/go/ast/astutil"
 )
 
 type FileBuilder struct {
@@ -75,7 +76,11 @@ func (f FileBuilder) DeclareNewType(name string, typeExpr ast.Expr) FileBuilder 
 
 // DeclareStruct creates and adds new type struct declaration to file.
 // If methods parameter is not nil, it is called to add methods.
-func (f FileBuilder) DeclareStruct(name string, fields func(StructBuilder) StructBuilder, methods func(TypeBuilder) TypeBuilder) FileBuilder {
+func (f FileBuilder) DeclareStruct(
+	name string,
+	fields func(StructBuilder) StructBuilder,
+	methods func(TypeBuilder) TypeBuilder,
+) FileBuilder {
 	return f.DeclareType(name, fields(NewStructBuilder()).Complete(), methods)
 }
 
