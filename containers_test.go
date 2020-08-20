@@ -48,3 +48,44 @@ func TestSliceOf(t *testing.T) {
 	require.Equal(t, i, arr.Elt)
 	require.Nil(t, arr.Len)
 }
+
+func ExampleMapOf() {
+	key := IdentOfKind(types.String)
+	value := EmptyInterface()
+	slice := MapOf(key, value)
+	printer.Fprint(os.Stdout, token.NewFileSet(), slice) // print ast.Node
+	// Output: map[string]interface {
+	// }
+}
+
+func ExampleHashSetOf() {
+	str := IdentOfKind(types.String)
+	slice := HashSetOf(str)
+	printer.Fprint(os.Stdout, token.NewFileSet(), slice) // print ast.Node
+	// Output: map[string]struct {
+	// }
+}
+
+func ExampleChanOf() {
+	str := EmptyStruct()
+	slice := ChanOf(str)
+	printer.Fprint(os.Stdout, token.NewFileSet(), slice) // print ast.Node
+	// Output: chan struct {
+	// }
+}
+
+func ExampleSendChanOf() {
+	str := EmptyStruct()
+	slice := SendChanOf(str)
+	printer.Fprint(os.Stdout, token.NewFileSet(), slice) // print ast.Node
+	// Output: chan<- struct {
+	// }
+}
+
+func ExampleRecvChanOf() {
+	str := EmptyStruct()
+	slice := RecvChanOf(str)
+	printer.Fprint(os.Stdout, token.NewFileSet(), slice) // print ast.Node
+	// Output: <-chan struct {
+	// }
+}
