@@ -33,3 +33,14 @@ func TestFunctionBuilder(t *testing.T) {
 	a.Equal(decl.Type, f.funcType)
 	a.Equal(decl.Name.Name, f.name.Name)
 }
+
+func TestFuncType(t *testing.T) {
+	a := require.New(t)
+
+	param := Param(ast.NewIdent("p"))(ast.NewIdent("param"))
+	result := Param(ast.NewIdent("res"))(ast.NewIdent("result"))
+	typ := FuncType(param)(result)
+
+	a.Equal(param, typ.Params.List[0])
+	a.Equal(result, typ.Results.List[0])
+}

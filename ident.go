@@ -7,6 +7,11 @@ func Err() *ast.Ident {
 	return ast.NewIdent("err")
 }
 
+// Error return error identifier.
+func Error() *ast.Ident {
+	return ast.NewIdent("error")
+}
+
 // Nil return nil identifier.
 func Nil() *ast.Ident {
 	return ast.NewIdent("nil")

@@ -11,6 +11,16 @@ type FunctionBuilder struct {
 	docs     *ast.CommentGroup
 }
 
+// FuncType creates new function type using given params and results.
+func FuncType(params ...*ast.Field) func(results ...*ast.Field) *ast.FuncType {
+	return func(results ...*ast.Field) *ast.FuncType {
+		return NewFunctionBuilder("").
+			AddParameters(params...).
+			AddResults(results...).
+			CompleteAsType()
+	}
+}
+
 // NewFunctionBuilder creates new FunctionBuilder.
 func NewFunctionBuilder(name string) FunctionBuilder {
 	return FunctionBuilder{
@@ -24,6 +34,12 @@ func NewFunctionBuilder(name string) FunctionBuilder {
 			},
 		},
 	}
+}
+
+// SetType sets function type.
+func (builder FunctionBuilder) SetType(typ *ast.FuncType) FunctionBuilder {
+	builder.funcType = typ
+	return builder
 }
 
 // AddParameters adds elements to function parameters.
@@ -55,10 +71,15 @@ func (builder FunctionBuilder) Recv(recv *ast.Field) FunctionBuilder {
 	return builder
 }
 
+// CompleteAsType returns built function as function type.
+func (builder FunctionBuilder) CompleteAsType() *ast.FuncType {
+	return builder.funcType
+}
+
 // CompleteAsLiteral returns built function as function literal.
 func (builder FunctionBuilder) CompleteAsLiteral() *ast.FuncLit {
 	return &ast.FuncLit{
-		Type: builder.funcType,
+		Type: builder.CompleteAsType(),
 		Body: &ast.BlockStmt{
 			List: builder.stmts,
 		},
@@ -76,7 +97,7 @@ func (builder FunctionBuilder) CompleteAsDecl() *ast.FuncDecl {
 		Doc:  builder.docs,
 		Recv: recv,
 		Name: builder.name,
-		Type: builder.funcType,
+		Type: builder.CompleteAsType(),
 		Body: &ast.BlockStmt{
 			List: builder.stmts,
 		},
