@@ -25,11 +25,6 @@ linters-settings:
     min-complexity: 15
   golint:
     min-confidence: 0
-  gomnd:
-    settings:
-      mnd:
-        # don't include the "operation" and "assign"
-        checks: argument,case,condition,return
   govet:
     check-shadowing: true
   lll:
@@ -59,7 +54,6 @@ linters:
     - gocritic
     - gocyclo
     - golint
-    - gomnd
     - goprintffuncname
     - gosec
     - gosimple
